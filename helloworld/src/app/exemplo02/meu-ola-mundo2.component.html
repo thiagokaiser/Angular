@@ -1,0 +1,28 @@
+<section class="container">
+  <article>
+    <h3>Interpolation / Interpolação</h3>
+    <p>renderizado com interpolacao {{ url }}</p>
+    <p>{{ 1 + 1 }}</p>
+    <p>{{ getValor() }}</p>    
+  </article>
+  <!--<img [src]="imgUrl"/>-->
+  <br>
+  selecione uma classe:
+  <select #classe (change)="0">
+    <option value="alert-success">Sucesso</option>
+    <option value="alert-info">Info</option>
+    <option value="alert-warning">Warning</option>
+    <option value="alert-danger">Error</option>
+  </select>
+  <br><br>
+  <div class="alert {{ classe.value }}" role="alert">...</div>
+  <div class="alert" role="alert" [class.alert-info]="classe.value == 'alert-info'">...</div>
+  <div class="alert" role="alert" [class.teste]="true">...</div>
+  
+  <div class="alert alert-danger"
+    [style.display]="classe.value == 'alert-danger' ? 'block' : 'none'"
+  >
+      {{ classe.value == 'alert-danger' }}
+  </div>
+
+</section>
