@@ -1,1 +1,5 @@
 @import '~bootstrap/dist/css/bootstrap.min.css';
+.table tr:hover{
+    background: rgb(204, 235, 255);  
+    cursor: pointer;      
+}

@@ -1,0 +1,23 @@
+<div class="row">
+  <div class="col-sm-6">
+    <br>
+    <p><b>Lista de alunos</b></p>
+    <table class="table table-bordered">
+      <thead>
+        <th>#</th>
+        <th>aluno</th>
+        <th>email</th>
+      </thead>
+      <tbody>
+        <tr *ngFor="let aluno of alunos" [routerLink]="[aluno.id]">
+          <td>{{ aluno.id }}</td>
+          <td>{{ aluno.nome }}</td>
+          <td>{{ aluno.email }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="col-sm-6">
+      <router-outlet></router-outlet>
+  </div>
+</div>

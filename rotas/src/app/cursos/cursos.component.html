@@ -1,10 +1,21 @@
-<p>
-  cursos works!
-</p>
+<p>Lista Cursos</p>
+<p>Pagina: {{ pagina }}</p>
 
-<ul class="list-group">      
-    <li class="list-group-item"
-     *ngFor="let curso of cursos">
-     <a [routerLink]="['/curso',curso.id]">{{ curso.nome }}</a>
-    </li>    
-</ul>
+<div class="row">
+  <div class="col-sm-6">
+    <table class="table table-bordered" style="max-width: 400px">
+      <thead>
+        <th>#</th>
+        <th>Curso</th>
+      </thead>
+      <tbody>
+        <tr *ngFor="let curso of cursos" [routerLink]="['/curso',curso.id]">
+          <td>{{ curso.id }}</td>
+          <td>{{ curso.nome }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<button (click)="proximaPagina()">prox pagina</button>
