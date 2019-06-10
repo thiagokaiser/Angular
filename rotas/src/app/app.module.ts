@@ -8,20 +8,27 @@ import { LoginComponent } from './login/login.component';
 import { CursosModule } from './cursos/cursos.module';
 import { AlunosComponent } from './alunos/alunos.component';
 import { AlunosModule } from './alunos/alunos.module';
+import { AuthService } from './login/auth.service';
+import { FormsModule } from '@angular/forms';
+import { AppBootstrapModule } from './app-bootstrap/app-bootstrap.module';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
-    LoginComponent
+    LoginComponent    
   ],
   imports: [
     BrowserModule,
     CursosModule,
     AlunosModule,
-    AppRoutingModule
+    AppRoutingModule,
+    FormsModule,
+    AppBootstrapModule,
+    BrowserAnimationsModule
   ],
-  providers: [],
+  providers: [AuthService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
