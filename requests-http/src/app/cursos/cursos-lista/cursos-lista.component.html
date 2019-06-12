@@ -9,7 +9,7 @@
     </div>    
   </div>
   <div class="card-body">
-    <table class="table table-hover" *ngIf="cursos$ | async as cursos; else loadingError">
+    <table class="table table-hover" *ngIf="cursos$ | async as cursos; else loading">
       <thead>
         <tr>
           <th>#</th>
@@ -23,11 +23,11 @@
           <td>{{ curso.nome }}</td>
           <td>
             <span class="float-right">
-              <button class="btn btn-outline-warning mb-1 btn-sm">
+              <button class="btn btn-outline-warning mb-1 btn-sm" (click)="onEdit(curso.id)">
                 Atualizar
               </button>
               {{ ' ' }}
-              <button class="btn btn-outline-danger mb-1 btn-sm">
+              <button class="btn btn-outline-danger mb-1 btn-sm" (click)="onDelete(curso)">
                   Remover
                 </button>
             </span>
@@ -35,14 +35,17 @@
         </tr>
       </tbody>
     </table>
-    <ng-template #loadingError>
-      <div *ngIf="error$ | async; else loading">
-        Erro ao carregar cursos
-      </div>
-      <ng-template #loading>
-          <span>Carregando Cursos...</span>
-      </ng-template>
-    </ng-template>
+    <ng-template #loading>
+      <span>Carregando Cursos...</span>
+    </ng-template>    
   </div>
   <!--<div class="card-footer">Footer</div>-->
 </div>
+
+<ng-template #deleteModal>
+  <div class="modal-body text-center">
+    <p>Do you want to confirm?</p>
+    <button type="button" class="btn btn-default" (click)="onConfirmDelete()" >Yes</button>
+    <button type="button" class="btn btn-primary" (click)="onDeclineDelete()" >No</button>
+  </div>
+</ng-template>
