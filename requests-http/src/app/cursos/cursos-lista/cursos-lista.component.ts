@@ -26,10 +26,10 @@ export class CursosListaComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.onRefresh();
+    this.carregaCursos();
   }
 
-  onRefresh() {
+  carregaCursos() {
     this.cursos$ = this.service.list().pipe(
       catchError(error => {
         console.error(error);
@@ -38,13 +38,18 @@ export class CursosListaComponent implements OnInit {
       })
     );
   }
-
+  onRefresh(){
+    this.router.navigate(['/cursos']);
+  }
   handleError() {
     this.alertService.showAlertDanger('deu erro');
   }
 
   onEdit(id) {
     this.router.navigate(['editar', id], { relativeTo: this.route });
+  }
+  onDetalhe(id) {
+    this.router.navigate(['detalhe', id], { relativeTo: this.route });
   }
   onDelete(curso: Curso) {
     const result$ = this.alertService.showConfirm('Confirmação', 'Tem certeza que deseja deletar?');
