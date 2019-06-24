@@ -7,6 +7,7 @@ import { catchError, take, switchMap } from 'rxjs/operators';
 import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Cursos2Service } from '../cursos2.service';
+import { CursoDetalheComponent } from '../curso-detalhe/curso-detalhe.component';
 
 @Component({
   selector: 'app-cursos-lista',
@@ -22,7 +23,8 @@ export class CursosListaComponent implements OnInit {
   constructor(private service: Cursos2Service,
     private alertService: AlertModalService,
     private router: Router,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private cursoDetalhe: CursoDetalheComponent
   ) { }
 
   ngOnInit() {
@@ -39,17 +41,15 @@ export class CursosListaComponent implements OnInit {
     );
   }
   onRefresh(){
-    this.router.navigate(['/cursos']);
+    //this.router.navigate(['/cursos']);
+    this.carregaCursos();
   }
   handleError() {
     this.alertService.showAlertDanger('deu erro');
-  }
-
-  onEdit(id) {
-    this.router.navigate(['editar', id], { relativeTo: this.route });
-  }
-  onDetalhe(id) {
+  }  
+  onDetalhe(id) {    
     this.router.navigate(['detalhe', id], { relativeTo: this.route });
+    this.cursoDetalhe.onRefresh();
   }
   onDelete(curso: Curso) {
     const result$ = this.alertService.showConfirm('Confirmação', 'Tem certeza que deseja deletar?');

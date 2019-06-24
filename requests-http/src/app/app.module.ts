@@ -9,6 +9,7 @@ import { SharedModule } from './shared/shared.module';
 import { NotFoundComponentComponent } from './not-found-component/not-found-component.component';
 import { AuthGuard } from './guards/auth.guard';
 import { HomeComponent } from './home/home.component';
+import { CursoDetalheComponent } from './cursos/curso-detalhe/curso-detalhe.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,7 @@ import { HomeComponent } from './home/home.component';
     ModalModule.forRoot(),
     SharedModule
   ],
-  providers: [AuthGuard],
+  providers: [AuthGuard, CursoDetalheComponent],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

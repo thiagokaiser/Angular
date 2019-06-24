@@ -1,5 +1,8 @@
 <p>
   Detalhe Curso
 </p>
-{{curso.id}}
-{{curso.nome}}
+{{ curso.id }} <br>
+{{ curso.nome }} <br><br>
+
+<button class="btn btn-primary" (click)="onEdit(curso.id)">Editar</button> {{ ' ' }}
+<button class="btn btn-secondary" (click)="onCancel()">Cancelar</button>

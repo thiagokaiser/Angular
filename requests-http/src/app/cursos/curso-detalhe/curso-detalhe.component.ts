@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
+import { Curso } from '../curso';
+import { Route } from '@angular/compiler/src/core';
 
 @Component({
   selector: 'app-curso-detalhe',
@@ -8,9 +10,29 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class CursoDetalheComponent implements OnInit {
 
-  constructor(private route: ActivatedRoute) { }
+  curso: Curso; 
+
+  constructor(private route: ActivatedRoute,
+              private router: Router) {
+                route.params.subscribe(val => {
+                  this.onRefresh();
+                });
+               }
 
   ngOnInit() {
-    const curso = this.route.snapshot.data['curso'];
+    //this.onRefresh();    
   }
+
+  onEdit(id) {    
+    this.router.navigate(['cursos/editar', id]);    
+  }
+  onCancel(){
+
+  }
+  onRefresh(){
+    console.log('teste');
+    let curso = this.route.snapshot.data['curso'];
+    this.curso = curso;
+  }
+
 }

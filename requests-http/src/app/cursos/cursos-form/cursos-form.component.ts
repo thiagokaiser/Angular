@@ -3,8 +3,9 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { CursosService } from '../cursos.service';
 import { AlertModalService } from 'src/app/shared/alert-modal.service';
 import { Location } from '@angular/common';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { switchMap, map } from 'rxjs/operators';
+import { CursosListaComponent } from '../cursos-lista/cursos-lista.component';
 
 @Component({
   selector: 'app-cursos-form',
@@ -15,12 +16,15 @@ export class CursosFormComponent implements OnInit {
 
   form: FormGroup;
   submitted = false;
+  idRegistro: number;
 
   constructor(private fb: FormBuilder,
     private service: CursosService,
     private modal: AlertModalService,
     private location: Location,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private router: Router,
+    private cursosLista: CursosListaComponent
   ) { }
 
   ngOnInit() {
@@ -43,13 +47,21 @@ export class CursosFormComponent implements OnInit {
       console.log('submit');
       let msgSuccess = 'Criado com sucesso';
       let msgError   = 'Erro ao atualizar';
-      if (this.form.value.id){
+      this.idRegistro = this.form.value.id;
+      if (this.idRegistro){
         msgSuccess = 'Alterado com sucesso';
       }
       this.service.save(this.form.value).subscribe(
         success => {
           this.modal.showAlertSuccess(msgSuccess);
-          this.location.back();
+          if(this.idRegistro){
+            this.router.navigate(['/cursos/detalhe', this.idRegistro]);
+          }
+          else{
+            this.router.navigate(['/cursos']);
+          }          
+          //this.location.back();
+          this.cursosLista.carregaCursos();
         },
         error => this.modal.showAlertDanger(msgError)
       );      
