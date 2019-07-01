@@ -14,7 +14,9 @@ export class CursoDetalheComponent implements OnInit {
 
   constructor(private route: ActivatedRoute,
               private router: Router) {
+                
                 route.params.subscribe(val => {
+                  console.log(val);
                   this.onRefresh();
                 });
                }
@@ -27,11 +29,11 @@ export class CursoDetalheComponent implements OnInit {
     this.router.navigate(['cursos/editar', id]);    
   }
   onCancel(){
-
+    this.router.navigate(['/cursos']);
   }
-  onRefresh(){
-    console.log('teste');
+  onRefresh(){    
     let curso = this.route.snapshot.data['curso'];
+    console.log(curso)
     this.curso = curso;
   }
 

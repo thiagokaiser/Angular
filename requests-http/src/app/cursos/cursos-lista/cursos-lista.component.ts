@@ -40,9 +40,9 @@ export class CursosListaComponent implements OnInit {
       })
     );
   }
-  onRefresh(){
-    //this.router.navigate(['/cursos']);
+  onRefresh(){    
     this.carregaCursos();
+    this.router.navigate(['/cursos']);
   }
   handleError() {
     this.alertService.showAlertDanger('deu erro');
